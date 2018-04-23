@@ -39,7 +39,13 @@ def cutImg(img, filename):
                 start_index = index
         else:
             if start_index != -1:
-                res.append((start_index, index))
+                #一个字符的宽度大约在25左右，为了防止字符粘连,需要在此处进行判断
+                if index - start_index > 40:
+                    res.append((start_index,start_index + (start_index - index) // 2))
+                    res.append((start_index + (start_index - index) // 2, index))
+                else:
+                    res.append((start_index, index))
+                print(index - start_index)
                 start_index = -1
         index += 1
 
