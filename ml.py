@@ -22,6 +22,8 @@ def load_train_data():
                 __class = 12
             for f in file:
                 img = cv2.imread(os.path.join(root, f), 0)
+                if img is None or img.shape != (60,30):
+                    continue
                 res.append(np.array(img).reshape(1,-1).tolist()[0])
                 c.append(__class)
     res = np.array(res)
@@ -35,6 +37,7 @@ def dumpModel():
     # knn.fit(train_data, train_target)
 
     l = LogisticRegression()
+
     l.fit(train_data,train_target)
 
     #保存模型
@@ -42,7 +45,7 @@ def dumpModel():
         pickle.dump(l, fw)
         print('保存模型完毕')
 
-
+dumpModel()
 
 #预测
 # index = 0

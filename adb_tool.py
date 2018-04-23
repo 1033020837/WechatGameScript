@@ -6,6 +6,7 @@ from io import BytesIO
 import cv2
 from PIL import Image
 import numpy as np
+from pymouse import PyMouse
 
 def getScreenShoot(filename = 'shoot.png'):
     """获取手机屏幕截图"""
@@ -25,8 +26,13 @@ def tapScreen(x, y):
     p = os.popen(cmd)
     print(p.read())
 
+m = PyMouse()
 
-allTime = []
+def tapScreenFromPC(x, y):
+    """从电脑上点击手机投影区域"""
+    m.click(int(x), int(y), 1)
+    time.sleep(0.1)
+
 
 def GetScreenshot():
     process = subprocess.Popen('adb shell screencap -p', shell=True, stdout=subprocess.PIPE, bufsize=1)

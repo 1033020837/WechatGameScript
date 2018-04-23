@@ -2,6 +2,8 @@ from PIL import Image
 import os
 import cv2
 import numpy as np
+from PIL import ImageGrab
+import time
 
 def cropImg(img):
     """裁剪原始截图"""
@@ -51,7 +53,27 @@ def cutImg(img, filename):
         names.append('%s_%d.png' % (filename, count))
         count += 1
     #print('分割，重新设置大小 %s 完毕' %filename)
+    print(names)
     return  names
+
+def v_cut(img):
+    """竖直方向切割图片，防止图片竖直平移给分类带来的干扰"""
+    sum_list = np.array(img).sum(axis=1)
+    start_index = -1
+    end = -1
+    index = 0
+    for sum in sum_list:
+        if sum > 255 * 2:
+            if start_index == -1:
+                start_index = index
+        else:
+            if start_index != -1 or index == len(sum_list):
+                end = index
+                break
+        index += 1
+    img = img[start_index:end, :]
+    img = cv2.resize(img, (30, 60), interpolation=cv2.INTER_CUBIC)
+    return img
 
 def all(img, filename):
     img = cropImg(img)
@@ -60,7 +82,7 @@ def all(img, filename):
     names = cutImg(img1, filename + '_1') + cutImg(img2, filename + '_2')
     return names
 
-#img = Image.open("ScreenShoot/200.png")
+
 # print(img.size)
 # width = img.size[0]
 # height = img.size[1]
@@ -69,7 +91,9 @@ def all(img, filename):
 # (0.27,0.8) (0.73,0.8)
 
 
-
-
-
-
+def shotFromComputer():
+    """从PC端截取投影的手机屏幕，节约时间"""
+    img = ImageGrab.grab(bbox=(10, 610 - 556, 310, 610))
+    img = np.array(img.getdata(), np.uint8).reshape(img.size[1], img.size[0], 3)
+    grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    return grayImg
