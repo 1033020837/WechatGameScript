@@ -1,7 +1,7 @@
 # WechatGameScript
 微信小游戏《加减大师》脚本
 
-目前停留在36关，由于adb运行完成每次都需要0.7s左右，后面几关程序没有足够的反应时间
+微信小游戏《加减大师》玩法极其简单，它给出一个等式，要玩家在指定时间内判断等式的对错，答对40个就算挑战成功，可以赢取娃娃。
 
-没有做屏幕适配，如果在别的手机上运行出错，请更改相关参数，参数在img_tool.py文件里面.
+![image](https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster1.jpg)
 
