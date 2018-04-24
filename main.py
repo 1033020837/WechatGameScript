@@ -4,6 +4,14 @@ import adb_tool
 import time
 import util
 from config import  config
+import os
+
+
+'''创建必要文件夹'''
+if os.path.exists('ScreenShot'):
+    os.mkdir('ScreenShot')
+if os.path.exists('SingleChar'):
+    os.mkdir('SingleChar')
 
 '''
 使用的截屏方法，0代表直接使用adb截屏，1代表使用跨平台的方法从PC截屏，2代表使用windows原生API进行截屏
@@ -34,7 +42,7 @@ def one_tap(res):
         else:
             util.tapScreenFromPC(config['pc_tap_false_x'], config['pc_tap_y'])
 
-count = 0
+count = 0   #迭代轮数
 while True:
     t1 =time.time()
     if shot_type == 0:
