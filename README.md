@@ -6,7 +6,7 @@
 游戏界面截图如下：
 
 <img width="150" height="150" src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster1.jpg"/>
-![image](https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster2.jpg)![image](https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png)
-
+<img width="150" height="150" src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster2.jpg"/>
+<img width="150" height="150" src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.jpg"/>
 
 
