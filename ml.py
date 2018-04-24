@@ -1,7 +1,10 @@
+'''
+使用sklearn中的逻辑回归模型识别数字和运算符号，并保存模型
+'''
+
 import os
 import cv2
 import numpy as np
-from sklearn import neighbors
 import pickle
 from sklearn.linear_model import LogisticRegression
 
@@ -31,26 +34,12 @@ def load_train_data():
     return res,c
 
 def dumpModel():
+    """保存模型到lr.pickle文件中"""
     train_data, train_target = load_train_data()
-    # knn = neighbors.KNeighborsClassifier()
-    # # 训练数据集
-    # knn.fit(train_data, train_target)
-
-    l = LogisticRegression()
-
+    l = LogisticRegression(class_weight='balanced')
     l.fit(train_data,train_target)
-
     #保存模型
     with open('lr.pickle', 'wb') as fw:
         pickle.dump(l, fw)
         print('保存模型完毕')
 
-#dumpModel()
-
-#预测
-# index = 0
-# for t in train_data:
-#     predict = knn.predict(t.reshape(1, -1))[0]
-#     if predict != train_target[index]:
-#         print('sss')
-#     index += 1

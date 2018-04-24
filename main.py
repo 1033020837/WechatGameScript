@@ -1,67 +1,61 @@
 import img_tool
 import pickle
-import cv2
-import os
-import numpy as np
 import adb_tool
 import time
+import util
+from config import  config
 
-#加载knn模型
+'''
+使用的截屏方法，0代表直接使用adb截屏，1代表使用跨平台的方法从PC截屏，2代表使用windows原生API进行截屏
+0方法很慢，最多只能闯到第35关
+1方法比较快，有一定几率通关
+2方法很快，通关几率更大
+'''
+shot_type = config['type']
+
+#加载逻辑回归模型
 with open('lr.pickle', 'rb') as fr:
     lr = pickle.load(fr)
 
-def get_result(img, filename):
-    res = []
-    filenames = img_tool.all(img, filename)
-    for filename in filenames:
-        img = cv2.imread(os.path.join('SingleChar', filename), 0)
-        img = img_tool.v_cut(img)
-        img = np.array(img).reshape(1, -1)
-        img[img == 255] = 1
-        y_hat = lr.predict(img)[0]
-        if y_hat == 10:
-            res.append('+')
-        elif y_hat == 11:
-            res.append('-')
-        elif y_hat == 12:
-            res.append('==')
-        else:
-            res.append(str(y_hat))
-    res = ''.join(res)
-    return res
+preRes = '' #保存上一步的表达式，防止因截图过快导致的本次点击了上一张图的答案
 
-preRes = ''
-def one_loop(res):
+'''
+一次屏幕点击
+'''
+def one_tap(res):
     if res:
-        #adb_tool.tapScreen(292, 1536)
-        adb_tool.tapScreenFromPC(77, 490)
+        if shot_type == 0:
+            adb_tool.tapScreen(config['adb_tap_true_x'], config['adb_tap_y'])
+        else:
+            util.tapScreenFromPC(config['pc_tap_true_x'], config['pc_tap_y'])
     else:
-        #adb_tool.tapScreen(788, 1536)
-        adb_tool.tapScreenFromPC(230,490)
+        if shot_type == 0:
+            adb_tool.tapScreen(config['adb_tap_false_x'], config['adb_tap_y'])
+        else:
+            util.tapScreenFromPC(config['pc_tap_false_x'], config['pc_tap_y'])
 
-count = 200
+count = 0
 while True:
-    start =time.time()
-    #img = adb_tool.GetScreenshot()
-    img = img_tool.shotFromComputer()
-    end = time.time()
-    print('截图耗时%f' %(end - start))
-    res = get_result(img, '%d.png' % count)
-    end2 = time.time()
-    print('获取结果耗时%f' % (end2 - end))
+    t1 =time.time()
+    if shot_type == 0:
+        img = adb_tool.getScreenshot()
+    elif shot_type == 1:
+        img = util.shotFromComputer()
+    else:
+        img = util.shotByWinAPI('ScreenShot/test.png')
+    t2= time.time()
+    print('截图耗时%f' %(t2 - t1))
+    res = img_tool.get_result(img, '%d.png' % count)
+    t3 = time.time()
+    print('获取结果耗时%f' % (t3 - t2))
     if res == preRes:
+        '''如果表达式和之前的表达式相同，则代表截图重复，可能此时手机已经跳到了下一题，因此不进行点击'''
         count += 1
         print('截图重复')
         continue
     else:
         print(res)
         preRes = res
-        one_loop(eval(res))
+        one_tap(eval(res))
         count += 1
-
-# count=200
-# # img = img_tool.shotFromComputer()
-# img = cv2.imread('ScreenShot/0.png',0)
-# res = get_result(img, '%d.png' % count)
-# print(res)
 
