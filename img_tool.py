@@ -52,7 +52,7 @@ def cutImg(img, filename):
         start = single_char[0]
         end = single_char[1]
         sub_img = img[:, start:end]
-        sub_img = v_cut(sub_img)
+        sub_img = cv2.resize(sub_img, (120, 240), interpolation=cv2.INTER_CUBIC)
         cv2.imwrite('SingleChar/%s_%d.png' % (filename, count), sub_img)
         names.append('%s_%d.png' % (filename, count))
         count += 1
@@ -93,6 +93,7 @@ def get_result(lr, img, filename):
     filenames = all(img, filename)
     for filename in filenames:
         img = cv2.imread(os.path.join('SingleChar', filename), 0)
+        img = v_cut(img)
         img = np.array(img).reshape(1, -1)
         img[img == 255] = 1
         y_hat = lr.predict(img)[0]

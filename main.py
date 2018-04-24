@@ -8,9 +8,9 @@ import os
 
 
 '''创建必要文件夹'''
-if os.path.exists('ScreenShot'):
+if not os.path.exists('ScreenShot'):
     os.mkdir('ScreenShot')
-if os.path.exists('SingleChar'):
+if not os.path.exists('SingleChar'):
     os.mkdir('SingleChar')
 
 '''
@@ -31,7 +31,8 @@ preRes = '' #保存上一步的表达式，防止因截图过快导致的本次�
 一次屏幕点击
 '''
 def one_tap(res):
-    if res:
+    print(eval(res))
+    if eval(res):
         if shot_type == 0:
             adb_tool.tapScreen(config['adb_tap_true_x'], config['adb_tap_y'])
         else:
@@ -50,20 +51,20 @@ while True:
     elif shot_type == 1:
         img = util.shotFromComputer()
     else:
-        img = util.shotByWinAPI('ScreenShot/test.png')
-    t2= time.time()
-    print('截图耗时%f' %(t2 - t1))
-    res = img_tool.get_result(img, '%d.png' % count)
-    t3 = time.time()
-    print('获取结果耗时%f' % (t3 - t2))
-    if res == preRes:
+        img = util.shotByWinAPI('ScreenShot/%d.png' %count)
+    #t2= time.time()
+    #print('截图耗时%f' %(t2 - t1))
+    res = img_tool.get_result(lr, img, '%d.png' % count)
+    #t3 = time.time()
+    #print('获取结果耗时%f' % (t3 - t2))
+    if res == preRes or res == '':
         '''如果表达式和之前的表达式相同，则代表截图重复，可能此时手机已经跳到了下一题，因此不进行点击'''
         count += 1
-        print('截图重复')
+        #print('截图重复')
         continue
     else:
         print(res)
         preRes = res
-        one_tap(eval(res))
+        one_tap(res)
         count += 1
 
