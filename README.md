@@ -7,8 +7,25 @@
 
 游戏主界面截图如下：
 
-<img width="150" height="150" src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png"/>
+<img width="150" height="250" src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png"/>
 
 WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其实现原理以及使用方法。
 
 <h4>实现原理</h4>
+
+1.截取游戏界面，本项目中提供了三种方案。
+ 第一种，使用adb命令截取手机屏幕；
+ 第二种，在PC端和手机端同时运行APowerMirror软件，将手机投屏到电脑上，然后使用Pillow包中的截图方法截取电脑上对应手机屏幕的
+ 区域。
+ 第三种，在PC端和手机端同时运行APowerMirror软件，将手机投屏到电脑上，然后使用Python调用windows的原生API截取电脑上对应手机
+ 屏幕的区域。
+ 三种截屏方式花费的时间差异很大，第一种每次截屏需要0.7s左右，第二种0.3s左右，第三种0.04s左右。
+ 
+2.提取截屏图片中的表达式区域并进行文字识别，得到表达式字符串。
+ 由于图片中的表达式区域固定，而且字符规整，因此这一步不是很困难，我仅仅训练了一个简单的逻辑回归模型就得到了非常高的识别正确率。
+ 
+ 3.根据第二步得到的表达式，调用Python的eval()函数，得到表达式结果的正误，然后点击手机屏幕的相应区域。
+ 点击手机屏幕提供了两种方案，当截屏使用adb命令时，点击手机屏幕也使用adb命令；当截图使用投屏的方案时，点击手机屏幕通过代码点击
+ 电脑上手机的对应区域。
+ 
+ <h4>使用方法</h4>
