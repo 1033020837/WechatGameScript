@@ -5,7 +5,6 @@ import os
 import numpy as np
 import adb_tool
 import time
-import tensorflow as tf
 
 #加载knn模型
 with open('lr.pickle', 'rb') as fr:
@@ -39,29 +38,30 @@ def one_loop(res):
     else:
         #adb_tool.tapScreen(788, 1536)
         adb_tool.tapScreenFromPC(230,490)
-# count = 200
-# while True:
-#     start =time.time()
-#     #img = adb_tool.GetScreenshot()
-#     img = img_tool.shotFromComputer()
-#     end = time.time()
-#     print('截图耗时%f' %(end - start))
-#     res = get_result(img, '%d.png' % count)
-#     end2 = time.time()
-#     print('获取结果耗时%f' % (end2 - end))
-#     if res == preRes:
-#         count += 1
-#         print('repeat')
-#         continue
-#     else:
-#         print(res)
-#         preRes = res
-#         one_loop(eval(res))
-#         count += 1
 
-count=200
-# img = img_tool.shotFromComputer()
-img = cv2.imread('ScreenShot/0.png',0)
-res = get_result(img, '%d.png' % count)
-print(res)
+count = 200
+while True:
+    start =time.time()
+    #img = adb_tool.GetScreenshot()
+    img = img_tool.shotFromComputer()
+    end = time.time()
+    print('截图耗时%f' %(end - start))
+    res = get_result(img, '%d.png' % count)
+    end2 = time.time()
+    print('获取结果耗时%f' % (end2 - end))
+    if res == preRes:
+        count += 1
+        print('截图重复')
+        continue
+    else:
+        print(res)
+        preRes = res
+        one_loop(eval(res))
+        count += 1
+
+# count=200
+# # img = img_tool.shotFromComputer()
+# img = cv2.imread('ScreenShot/0.png',0)
+# res = get_result(img, '%d.png' % count)
+# print(res)
 

@@ -45,7 +45,7 @@ def dumpModel():
         pickle.dump(l, fw)
         print('保存模型完毕')
 
-dumpModel()
+#dumpModel()
 
 #预测
 # index = 0

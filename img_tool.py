@@ -41,11 +41,10 @@ def cutImg(img, filename):
             if start_index != -1:
                 #一个字符的宽度大约在25左右，为了防止字符粘连,需要在此处进行判断
                 if index - start_index > 40:
-                    res.append((start_index,start_index + (start_index - index) // 2))
-                    res.append((start_index + (start_index - index) // 2, index))
+                    res.append((start_index,start_index + (index - start_index) // 2))
+                    res.append((start_index + (index - start_index) // 2, index))
                 else:
                     res.append((start_index, index))
-                print(index - start_index)
                 start_index = -1
         index += 1
 
@@ -59,7 +58,6 @@ def cutImg(img, filename):
         names.append('%s_%d.png' % (filename, count))
         count += 1
     #print('分割，重新设置大小 %s 完毕' %filename)
-    print(names)
     return  names
 
 def v_cut(img):
