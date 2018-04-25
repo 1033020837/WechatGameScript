@@ -13,10 +13,6 @@
 
 [![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://v.qq.com/x/page/u0637p3ap4q.html)
 
-<video width="320" height="240" controls>
-    <source src="https://v.qq.com/x/page/u0637p3ap4q.html" type="video/mp4">
-</video>
-
 WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其实现原理以及使用方法。
 
 <h4>实现原理</h4>
