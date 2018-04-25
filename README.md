@@ -9,6 +9,12 @@
 
 <img width="150" height="250" src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png"/>
 
+脚本运行通关视频：
+
+<video src="https://v.qq.com/x/page/u0637p3ap4q.html" controls="controls">
+您的浏览器不支持 video 标签。
+</video>
+
 WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其实现原理以及使用方法。
 
 <h4>实现原理</h4>
