@@ -16,7 +16,7 @@ map = {
     0:(int(1920*0.89),int(1020*0.495))
 }
 
-start = 102
+start = 1
 while start <= 500:
     _str = str(start)
     for char in _str:

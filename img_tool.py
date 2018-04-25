@@ -38,8 +38,12 @@ def cutImg(img, filename):
                 start_index = index
         else:
             if start_index != -1:
-                #一个字符的宽度大约在25左右，为了防止字符粘连,需要在此处进行判断
-                if index - start_index > 40:
+                if config.config['type'] == 0:
+                    sigleCharWidth = config.config['abd_single_char_width']
+                else:
+                    sigleCharWidth = config.config['pc_single_char_width']
+                #为了防止字符粘连,需要在此处宽度进行判断
+                if index - start_index > sigleCharWidth * 2:
                     res.append((start_index,start_index + (index - start_index) // 2))
                     res.append((start_index + (index - start_index) // 2, index))
                 else:
@@ -59,8 +63,9 @@ def cutImg(img, filename):
     #print('分割，重新设置大小 %s 完毕' %filename)
     return  names
 
-
+c = 200
 def v_cut(img):
+    global c
     """竖直方向切割图片"""
     sum_list = np.array(img).sum(axis=1)
     start_index = -1
@@ -77,6 +82,8 @@ def v_cut(img):
             break
     img = img[start_index:end, :]
     img = cv2.resize(img, (30, 60), interpolation=cv2.INTER_CUBIC)
+    cv2.imwrite('SingleChar/%d.png' %c, img)
+    c += 1
     return img
 
 def all(img, filename):

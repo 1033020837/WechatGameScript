@@ -32,5 +32,9 @@ config = {
     #使用PC进行截图时点击手机屏幕错误区域的x坐标
     'pc_tap_false_x':230,
     #使用PC进行截图时点击手机屏幕正确和区域的y坐标
-    'pc_tap_y':490
+    'pc_tap_y':490,
+    #使用adb截屏时一个字符的宽度
+    'abd_single_char_width':80,
+    #使用PC截屏时一个字符的宽度
+    'pc_single_char_width':25
 }
