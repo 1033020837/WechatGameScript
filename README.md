@@ -15,7 +15,6 @@
 
 <video width="320" height="240" controls>
     <source src="https://v.qq.com/x/page/u0637p3ap4q.html" type="video/mp4">
-    您的浏览器不支持 video 标签。
 </video>
 
 WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其实现原理以及使用方法。
