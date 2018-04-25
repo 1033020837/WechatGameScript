@@ -13,6 +13,11 @@
 
 [![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://v.qq.com/x/page/u0637p3ap4q.html)
 
+<video width="320" height="240" controls>
+    <source src="https://v.qq.com/x/page/u0637p3ap4q.html" type="video/mp4">
+    您的浏览器不支持 video 标签。
+</video>
+
 WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其实现原理以及使用方法。
 
 <h4>实现原理</h4>
@@ -28,31 +33,34 @@ WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其
 2.提取截屏图片中的表达式区域并进行文字识别，得到表达式字符串。
  由于图片中的表达式区域固定，而且字符规整，因此这一步不是很困难，我仅仅训练了一个简单的逻辑回归模型就得到了非常高的识别正确率。
  
- 3.根据第二步得到的表达式，调用Python的eval()函数，得到表达式结果的正误，然后点击手机屏幕的相应区域。
- 点击手机屏幕提供了两种方案，当截屏使用adb命令时，点击手机屏幕也使用adb命令；当截图使用投屏的方案时，点击手机屏幕通过代码点击
- 电脑上手机的对应区域。
+3.根据第二步得到的表达式，调用Python的eval()函数，得到表达式结果的正误，然后点击手机屏幕的相应区域。
+点击手机屏幕提供了两种方案，当截屏使用adb命令时，点击手机屏幕也使用adb命令；当截图使用投屏的方案时，点击手机屏幕通过代码点击
+电脑上手机的对应区域。
  
  <h4>使用方法</h4>
 
 1.配置ADB
 参考一下链接:<a href="https://blog.csdn.net/qq_33337811/article/details/72594178">Win10配置ADB工具</a>
 
-2.想办法获得表达式区域顶部和底部的y坐标相对于整个手机屏幕的高度的比例，然后将对应值填入根目录下的config.py文件中的 exp_area_top_rate
+2.安装PyUserInput依赖包，Python3可能无法使用pip直接安装，可以参考以下链接进行安装：
+<a href='https://www.cnblogs.com/wangliyuanzcz/p/7999852.html'> Win10 Python3.5安装PyUserInput</a>
+
+3.想办法获得表达式区域顶部和底部的y坐标相对于整个手机屏幕的高度的比例，然后将对应值填入根目录下的config.py文件中的 exp_area_top_rate
 和 exp_area_bottom_rate 处。我的手机分辨率是1920*1080，这两个参数分别是0.36和0.56.
 
-3.修改config.py中的type的值，0、1、2分别对应第一、二、三种截屏方案，默认使用第一种即adb命令的截屏方案，建议先尝试一下默认方案。
+4.修改config.py中的type的值，0、1、2分别对应第一、二、三种截屏方案，默认使用第一种即adb命令的截屏方案，建议先尝试一下默认方案。
 
-4.如果选择adb命令的截屏方案，此时你还需要得到游戏主界面中代表正确和错误的点击区域的中心点的大概坐标，并分别填入config.py的
+5.如果选择adb命令的截屏方案，此时你还需要得到游戏主界面中代表正确和错误的点击区域的中心点的大概坐标，并分别填入config.py的
 adb_tap_true_x、adb_tap_false_x、adb_tap_y处。由于两个区域高度相同，因此y值只需要填一个。
 
-5.将手机打开调试模式，调到游戏界面，运行 main.py 文件即可。
+6.将手机打开调试模式，调到游戏界面，运行 main.py 文件即可。
 
-6.因为adb命令截屏实在太慢，因此程序最多能到达第36关，游戏的回合时间会在36关骤减，导致程序反应不过来。因此，要拿到娃娃，必须使用第二
+7.因为adb命令截屏实在太慢，因此程序最多能到达第36关，游戏的回合时间会在36关骤减，导致程序反应不过来。因此，要拿到娃娃，必须使用第二
 或者是第三种方案。因此，首先我们得安装APowerMirror软件，软件下载链接：<a href="https://software.airmore.cn/phone-mirror?bd">
  APowerMirror下载</a>。
  
- 7.打开APowerMirror软件，将手机屏幕投影到电脑上，然后将APowerMirror拉到桌面的一个固定位置，建议拉到左上角。使用QQ的截屏功能或者是
- 其他方法获取以下参数并填入config.py的对应位置：
+8.打开APowerMirror软件，将手机屏幕投影到电脑上，然后将APowerMirror拉到桌面的一个固定位置，建议拉到左上角。使用QQ的截屏功能或者是
+其他方法获取以下参数并填入config.py的对应位置：
     要截取的区域左上角相对桌面的x坐标：projection_x
     要截取的区域左上角相对桌面的y坐标：projection_y
     截取区域的宽：projection_width
@@ -61,7 +69,7 @@ adb_tap_true_x、adb_tap_false_x、adb_tap_y处。由于两个区域高度相同
     手机屏幕代表错误的区域的中心相对于桌面的x坐标：pc_tap_false_x
     手机屏幕代表正确和错误的区域的中心相对于桌面的y坐标：pc_tap_y
 
-  8.将config.py中的type设置为1或者2，将手机打开调试模式，调到游戏界面，运行 main.py 文件即可。注意桌面上不要有东西遮挡到手机的投影区域。
+9.将config.py中的type设置为1或者2，将手机打开调试模式，调到游戏界面，运行 main.py 文件即可。注意桌面上不要有东西遮挡到手机的投影区域。
   
 <h4>相关问题</h4>
 1.使用adb命令截屏时无法闯过最后几关
