@@ -11,7 +11,7 @@
 
 脚本运行通关视频：
 
-[![Watch the video](https://v.qq.com/x/page/u0637p3ap4q.html)]
+[![Watch the video](https://v.qq.com/x/page/u0637p3ap4q.html)](https://v.qq.com/x/page/u0637p3ap4q.html)
 
 WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其实现原理以及使用方法。
 
