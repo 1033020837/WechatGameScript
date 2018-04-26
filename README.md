@@ -57,11 +57,17 @@ adb_tap_true_x、adb_tap_false_x、adb_tap_y处。由于两个区域高度相同
 8.打开APowerMirror软件，将手机屏幕投影到电脑上，然后将APowerMirror拉到桌面的一个固定位置，建议拉到左上角。使用QQ的截屏功能或者是
 其他方法获取以下参数并填入config.py的对应位置：
     要截取的区域左上角相对桌面的x坐标：projection_x
+    
     要截取的区域左上角相对桌面的y坐标：projection_y
+    
     截取区域的宽：projection_width
+    
     截取区域的高度：projection_height
+    
     手机屏幕代表正确的区域的中心相对于桌面的x坐标：pc_tap_true_x
+    
     手机屏幕代表错误的区域的中心相对于桌面的x坐标：pc_tap_false_x
+    
     手机屏幕代表正确和错误的区域的中心相对于桌面的y坐标：pc_tap_y
 
 9.将config.py中的type设置为1或者2，将手机打开调试模式，调到游戏界面，运行 main.py 文件即可。注意桌面上不要有东西遮挡到手机的投影区域。
