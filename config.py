@@ -38,6 +38,6 @@ config = {
     'abd_single_char_width':80,
     #使用PC截屏时一个字符的宽度
     'pc_single_char_width':25,
-    #游戏一开始每次截图重复时休眠的时间，随着轮数的增加而衰减
-    'sleep_when_repeat':0.25,
+    #每次截图重复时休眠的时间
+    'sleep_when_repeat':0.15,
 }
