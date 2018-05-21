@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 import pickle
 from sklearn.linear_model import LogisticRegression
+import shutil
 
 def load_train_data():
     """加载训练数据"""
@@ -43,3 +44,16 @@ def dumpModel():
         pickle.dump(l, fw)
         print('保存模型完毕')
 
+#清空 TrainChar文件夹以便重新导入训练字符
+def cleanTrainChar():
+    shutil.rmtree('TrainChar')
+    os.mkdir('TrainChar')
+    for num in range(10):
+        os.mkdir(os.path.join("TrainChar", num))
+    for op in ['+', '-', '=']:
+        os.mkdir(os.path.join("TrainChar", op))
+    print('done')
+
+
+if __name__ == '__main__':
+    dumpModel()

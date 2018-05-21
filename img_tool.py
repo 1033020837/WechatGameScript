@@ -63,7 +63,7 @@ def cutImg(img, filename):
     #print('分割，重新设置大小 %s 完毕' %filename)
     return  names
 
-c = 200
+c = 0
 def v_cut(img):
     global c
     """竖直方向切割图片"""
@@ -115,4 +115,19 @@ def get_result(lr, img, filename):
     res = ''.join(res)
     return res
 
+#获取用于训练的单个字符
+def get_char_for_train():
+    if not os.path.exists('SingleCharForTrain'):
+        os.mkdir('SingleCharForTrain')
 
+    for f in os.listdir("ScreenShotForTrain"):
+        srcImg = cv2.imread(os.path.join("ScreenShotForTrain", f), 0)
+        filenames = all(srcImg, f)
+        for filename in filenames:
+            img = cv2.imread(os.path.join('SingleChar', filename), 0)
+            img = v_cut(img)
+            cv2.imwrite('SingleCharForTrain/%s.png' % filename, img)
+    print("Done!")
+
+if __name__ == '__main__':
+    get_char_for_train()
