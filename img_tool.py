@@ -14,8 +14,11 @@ def cropImg(img):
 def binaryImg(img):
     """二值化图片"""
     ret, thresh1 = cv2.threshold(img, config.config['binary_threshold'], 255, cv2.THRESH_BINARY)
+    # ret, thresh1 = cv2.threshold(img, config.config['binary_threshold'], 255, cv2.THRESH_BINARY_INV)
     #print('二值化完毕')
     return thresh1
+
+
 
 def cropAgain(img):
     """再次裁剪"""
@@ -91,6 +94,7 @@ def all(img, filename):
     img = cropImg(img)
     img = binaryImg(img)
     img1, img2 = cropAgain(img)
+
     names = cutImg(img1, filename + '_1') + cutImg(img2, filename + '_2')
     return names
 
@@ -100,6 +104,7 @@ def get_result(lr, img, filename):
     filenames = all(img, filename)
     for filename in filenames:
         img = cv2.imread(os.path.join('SingleChar', filename), 0)
+
         img = v_cut(img)
         img = np.array(img).reshape(1, -1)
         img[img == 255] = 1
@@ -130,4 +135,6 @@ def get_char_for_train():
     print("Done!")
 
 if __name__ == '__main__':
-    get_char_for_train()
+    #get_char_for_train()
+    img = cv2.imread('ScreenShot/1.png', 0)
+    all(img, 'ss')

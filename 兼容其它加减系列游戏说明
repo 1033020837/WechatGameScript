@@ -1,0 +1,7 @@
+1.加减大师和加减王者由于背景颜色等一摸一样，因此可以使用一套配置。
+推荐玩加减王者，因为他每天不限定分享的次数，理论上可以一直刷下去。
+
+2.加减大神需要更改config.py中的binary_threshold属性，建议改为150。
+还需要将img_tool.py中的binaryImg()中的ret, thresh1 = cv2.threshold(img, config.config['binary_threshold'], 255, cv2.THRESH_BINARY)
+修改为 ret, thresh1 = cv2.threshold(img, config.config['binary_threshold'], 255, cv2.THRESH_BINARY_INV)，
+因为这个游戏的表达式的文字颜色偏黑，所以需要使用反向二值化以适应训练字符。

@@ -45,5 +45,5 @@ m = PyMouse()
 def tapScreenFromPC(x, y):
     """从电脑上点击手机投影区域"""
     m.click(int(x), int(y), 1)
-    time.sleep(config['tap_sleep'])
+    #time.sleep(config['tap_sleep'])
 

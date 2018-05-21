@@ -50,9 +50,9 @@ def one_tap(res):
         else:
             util.tapScreenFromPC(config['pc_tap_false_x'], config['pc_tap_y'])
 
-count = 0   #迭代轮数
+
+count = 1   #迭代轮数
 while True:
-    t1 =time.time()
     if shot_type == 0:
         img = adb_tool.getScreenshot()
     elif shot_type == 1:
@@ -67,16 +67,21 @@ while True:
     #t2= time.time()
     #print('截图耗时%f' %(t2 - t1))
     res = img_tool.get_result(lr, img, '%d.png' % count)
+
     #t3 = time.time()
     #print('获取结果耗时%f' % (t3 - t2))
     if res == preRes or res == '':
         '''如果表达式和之前的表达式相同，则代表截图重复，可能此时手机已经跳到了下一题，因此不进行点击'''
-        count += 1
         print('截图重复')
+        time.sleep(config['sleep_when_repeat']// (count % 10 + 1))
         continue
     else:
-        print(res)
+        print('第%d轮： %s'%(count,res), end=' ')
         preRes = res
-        one_tap(res)
+        try:
+            one_tap(res)
+        except SyntaxError:
+            print("游戏结束！")
+            exit(0)
         count += 1
 
