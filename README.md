@@ -1,9 +1,11 @@
 # WechatGameScript
-微信小游戏《加减大师》脚本
+微信小游戏《加减大师》脚本，兼容《加减王者》、《加减大神》以及其他加减系列游戏
 
 <h4>游戏说明</h4>
 
-微信小游戏《加减大师》玩法极其简单，它给出一个等式，要玩家在指定时间内判断等式的对错，答对40个就算挑战成功，可以赢取娃娃。
+微信小游戏《加减大师》以及其他加减系列的游戏玩法都极其简单，给出一个等式，要玩家在指定时间内判断等式的对错，答对40个就算挑战成功，可以赢取娃娃或现金红包（虽然少的可怜）。
+
+下面以《加减大师》为例进行说明，其他游戏都大同小异。目前我只测试了《加减大师》、《加减王者》、《加减大神》三款游戏，请参考项目中的兼容说明，其他游戏比如《加减大师挑战赛》、《加减大神黄金版》什么的其实都大同小异，无非就是要调一调参数，然后重新训练一下自己的图像识别模型（参考<a href="https://github.com/1033020837/WechatGameScript/issues/3">#3</a>）。
 
 游戏主界面截图如下：
 
@@ -13,7 +15,7 @@
 
 [![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://v.qq.com/x/page/u0637p3ap4q.html)
 
-WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其实现原理以及使用方法。
+本项目使用Python3编写，下面介绍其实现原理以及使用方法。
 
 <h4>实现原理</h4>
 
@@ -35,7 +37,7 @@ WechatGameScript是我一时兴起所写，使用Python3编写，下面介绍其
  <h4>使用方法</h4>
 
 1.配置ADB
-参考一下链接:<a href="https://blog.csdn.net/qq_33337811/article/details/72594178">Win10配置ADB工具</a>
+参考以下链接:<a href="https://blog.csdn.net/qq_33337811/article/details/72594178">Win10配置ADB工具</a>
 
 2.安装PyUserInput依赖包，Python3可能无法使用pip直接安装，可以参考以下链接进行安装：
 <a href='https://www.cnblogs.com/wangliyuanzcz/p/7999852.html'> Win10 Python3.5安装PyUserInput</a>
