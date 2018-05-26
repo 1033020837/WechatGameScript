@@ -73,7 +73,7 @@ while True:
     if res == preRes or res == '':
         '''如果表达式和之前的表达式相同，则代表截图重复，可能此时手机已经跳到了下一题，因此不进行点击'''
         print('截图重复')
-        time.sleep(config['sleep_when_repeat'])
+        time.sleep(config['sleep_when_repeat'] / (count // 10 + 1))
         continue
     else:
         print('第%d轮： %s'%(count,res), end=' ')

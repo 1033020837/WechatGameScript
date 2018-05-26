@@ -39,5 +39,5 @@ config = {
     #使用PC截屏时一个字符的宽度
     'pc_single_char_width':25,
     #每次截图重复时休眠的时间
-    'sleep_when_repeat':0.15,
+    'sleep_when_repeat':0.6,
 }

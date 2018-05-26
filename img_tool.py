@@ -54,17 +54,21 @@ def cutImg(img, filename):
                 start_index = -1
         index += 1
 
+    imgs = []
     count = 0
     for single_char in res:
         start = single_char[0]
         end = single_char[1]
         sub_img = img[:, start:end]
         sub_img = cv2.resize(sub_img, (120, 240), interpolation=cv2.INTER_CUBIC)
-        cv2.imwrite('SingleChar/%s_%d.png' % (filename, count), sub_img)
-        names.append('%s_%d.png' % (filename, count))
+        #cv2.imwrite('SingleChar/%s_%d.png' % (filename, count), sub_img)
+        #names.append('%s_%d.png' % (filename, count))
+        # cv2.imshow(str(count), sub_img)
+        imgs.append(sub_img)
         count += 1
+    # cv2.waitKey()
     #print('分割，重新设置大小 %s 完毕' %filename)
-    return  names
+    return  imgs
 
 c = 0
 def v_cut(img):
@@ -85,7 +89,7 @@ def v_cut(img):
             break
     img = img[start_index:end, :]
     img = cv2.resize(img, (30, 60), interpolation=cv2.INTER_CUBIC)
-    cv2.imwrite('SingleChar/%d.png' %c, img)
+    #cv2.imwrite('SingleChar/%d.png' %c, img)
     c += 1
     return img
 
@@ -93,17 +97,17 @@ def all(img, filename):
     """封装对图片的所有操作"""
     img = cropImg(img)
     img = binaryImg(img)
+
     img1, img2 = cropAgain(img)
 
-    names = cutImg(img1, filename + '_1') + cutImg(img2, filename + '_2')
-    return names
+    imgs = cutImg(img1, filename + '_1') + cutImg(img2, filename + '_2')
+    return imgs
 
 def get_result(lr, img, filename):
     """根据图片的数据获取表达式,lr为逻辑回归模型"""
     res = []
-    filenames = all(img, filename)
-    for filename in filenames:
-        img = cv2.imread(os.path.join('SingleChar', filename), 0)
+    imgs = all(img, filename)
+    for img in imgs:
 
         img = v_cut(img)
         img = np.array(img).reshape(1, -1)
@@ -134,7 +138,12 @@ def get_char_for_train():
             cv2.imwrite('SingleCharForTrain/%s.png' % filename, img)
     print("Done!")
 
+
+import time
 if __name__ == '__main__':
-    #get_char_for_train()
-    img = cv2.imread('ScreenShot/1.png', 0)
-    all(img, 'ss')
+    #get_char_for_train()s
+    srcImg = cv2.imread('test2.jpg', 0)
+    t1 = time.time()
+    imgs = all(srcImg, "abc")
+    t2 = time.time()
+    print(t2 - t1)
