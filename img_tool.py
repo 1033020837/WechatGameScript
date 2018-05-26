@@ -100,7 +100,9 @@ def all(img, filename):
 
     img1, img2 = cropAgain(img)
 
+
     imgs = cutImg(img1, filename + '_1') + cutImg(img2, filename + '_2')
+
     return imgs
 
 def get_result(lr, img, filename):
@@ -110,6 +112,10 @@ def get_result(lr, img, filename):
     for img in imgs:
 
         img = v_cut(img)
+
+
+
+
         img = np.array(img).reshape(1, -1)
         img[img == 255] = 1
         y_hat = lr.predict(img)[0]
@@ -138,12 +144,17 @@ def get_char_for_train():
             cv2.imwrite('SingleCharForTrain/%s.png' % filename, img)
     print("Done!")
 
-
 import time
+import pickle
+with open('lr.pickle', 'rb') as fr:
+    lr = pickle.load(fr)
+
 if __name__ == '__main__':
     #get_char_for_train()s
-    srcImg = cv2.imread('test2.jpg', 0)
+    srcImg = cv2.imread('ScreenShot/110.png', 0)
     t1 = time.time()
-    imgs = all(srcImg, "abc")
+    #imgs = all(srcImg, "abc")
+    res = get_result(lr, srcImg,'s')
+    print(res)
     t2 = time.time()
     print(t2 - t1)
