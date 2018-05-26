@@ -13,10 +13,10 @@
 下面以《加减大师》为例进行说明，其他游戏都大同小异。目前我只测试了《加减大师》、《加减王者》、《加减大神》三款游戏，请参考项目中的兼容说明，其他游戏比如《加减大师挑战赛》、《加减大神黄金版》什么的其实都大同小异，无非就是要调一调参数，然后重新训练一下自己的图像识别模型（参考<a href="https://github.com/1033020837/WechatGameScript/issues/3">#3</a>）。
 
 游戏主界面及脚本运行截图如下：
-<figure class="half">
+<center  class="half">
     <img src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png" width="300">
     <img src="https://github.com/1033020837/WechatGameScript/blob/master/example.gif" width="300">
-</figure>
+</center >
 
 本项目使用Python3编写，下面介绍其实现原理以及使用方法。
 
