@@ -14,8 +14,8 @@
 
 游戏主界面及脚本运行截图如下：
 <figure class="half">
-    <img src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png">
-    <img src="https://github.com/1033020837/WechatGameScript/blob/master/example.gif">
+    <img src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png" width="300">
+    <img src="https://github.com/1033020837/WechatGameScript/blob/master/example.gif" width="300">
 </figure>
 
 本项目使用Python3编写，下面介绍其实现原理以及使用方法。
