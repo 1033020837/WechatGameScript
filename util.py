@@ -9,6 +9,7 @@ import time
 from PIL import ImageGrab
 import numpy as np
 from config import config
+import os
 
 def shotFromComputer():
     """从PC端截取投影的手机屏幕，节约时间"""
@@ -17,6 +18,8 @@ def shotFromComputer():
     img = np.array(img.getdata(), np.uint8).reshape(img.size[1], img.size[0], 3)
     grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     return grayImg
+
+
 
 def shotByWinAPI(filename):
     """使用windows原生API截屏，快的一匹"""
@@ -39,6 +42,11 @@ def shotByWinAPI(filename):
     saveDC.BitBlt((0, 0), (w, h), mfcDC, (config['projection_x'], config['projection_y']), win32con.SRCCOPY)
     saveBitMap.SaveBitmapFile(saveDC, filename)
     img = cv2.imread(filename, 0)
+    win32gui.DeleteObject(saveBitMap.GetHandle())
+    saveDC.DeleteDC()
+    mfcDC.DeleteDC()
+    win32gui.ReleaseDC(hwnd, hwndDC)
+    #os.remove(filename)
     return img
 
 m = PyMouse()
