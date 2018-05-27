@@ -1,6 +1,8 @@
 # WechatGameScript
 微信小游戏《加减大师》脚本（最高刷到1500关），兼容《加减王者》、《加减大神》以及其他加减系列游戏
 
+![](https://img.shields.io/badge/language-python-blue.svg)
+
 <h3>号外号外！</h3>
 本脚本最高刷到了《加减大师》第<b>1500</b>关！！！运行最新代码，使用windows原生API截屏的方式。
 还有谁？
