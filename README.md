@@ -1,5 +1,8 @@
 # WechatGameScript
-![](https://img.shields.io/badge/language-python-blue.svg)
+<div>
+    ![](https://img.shields.io/badge/language-python-blue.svg)
+    [![](https://travis-ci.org/Alamofire/Alamofire.svg?branch=master)](https://travis-ci.org/Alamofire/Alamofire)
+</div>
 
 微信小游戏《加减大师》脚本（最高刷到1500关），兼容《加减王者》、《加减大神》以及其他加减系列游戏
 
