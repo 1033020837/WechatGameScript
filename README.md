@@ -1,5 +1,11 @@
 # WechatGameScript
-微信小游戏《加减大师》脚本，兼容《加减王者》、《加减大神》以及其他加减系列游戏
+![](https://img.shields.io/badge/language-python-blue.svg)
+
+
+微信小游戏《加减大师》脚本（最高刷到2243关），兼容《加减王者》、《加减大神》以及其他加减系列游戏
+
+<h3>号外号外！</h3>
+本脚本最高刷到了《加减大师》第<b>2243</b>关！！！围观戳 <a href="https://v.qq.com/x/page/l0670zen62b.html">link</a>
 
 <h4>游戏说明</h4>
 
@@ -7,13 +13,11 @@
 
 下面以《加减大师》为例进行说明，其他游戏都大同小异。目前我只测试了《加减大师》、《加减王者》、《加减大神》三款游戏，请参考项目中的兼容说明，其他游戏比如《加减大师挑战赛》、《加减大神黄金版》什么的其实都大同小异，无非就是要调一调参数，然后重新训练一下自己的图像识别模型（参考<a href="https://github.com/1033020837/WechatGameScript/issues/3">#3</a>）。
 
-游戏主界面截图如下：
-
-<img width="150" height="250" src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png"/>
-
-脚本运行通关视频：
-
-[![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://v.qq.com/x/page/u0637p3ap4q.html)
+游戏主界面及脚本运行截图如下：
+<div align="center">
+    <img src="https://github.com/clouduan/WechatGameAutoPlayer/raw/master/Images/PlusSubstractMaster3.png"  width="300" >
+     <img src="https://github.com/1033020837/WechatGameScript/blob/master/example.gif" width="300">
+</div>
 
 本项目使用Python3编写，下面介绍其实现原理以及使用方法。
 
