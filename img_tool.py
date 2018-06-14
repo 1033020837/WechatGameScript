@@ -137,11 +137,10 @@ def get_char_for_train():
 
     for f in os.listdir("ScreenShotForTrain"):
         srcImg = cv2.imread(os.path.join("ScreenShotForTrain", f), 0)
-        filenames = all(srcImg, f)
-        for filename in filenames:
-            img = cv2.imread(os.path.join('SingleChar', filename), 0)
+        imgs = all(srcImg, f)
+        for i,img in enumerate(imgs):
             img = v_cut(img)
-            cv2.imwrite('SingleCharForTrain/%s.png' % filename, img)
+            cv2.imwrite('SingleCharForTrain/%s_%d.png' %(f,i), img)
     print("Done!")
 
 import time
@@ -151,7 +150,7 @@ with open('lr.pickle', 'rb') as fr:
 
 if __name__ == '__main__':
     #get_char_for_train()s
-    srcImg = cv2.imread('ScreenShot/110.png', 0)
+    srcImg = cv2.imread('ScreenShot/1.png', 0)
     t1 = time.time()
     #imgs = all(srcImg, "abc")
     res = get_result(lr, srcImg,'s')
